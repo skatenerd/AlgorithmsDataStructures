@@ -1,5 +1,5 @@
 # Use a linked list to implement
-# a Queue.
+# a Stack.
 
 require_relative '../../in_class/lib/linked_list'
 
