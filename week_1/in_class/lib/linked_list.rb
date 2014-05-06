@@ -21,7 +21,4 @@ class LinkedList
 
   def insert_before(index, value)
   end
-
-  def delete(index)
-  end
 end

@@ -84,17 +84,4 @@ describe LinkedList do
       expect { list.insert_before(100, :value) }.to raise_error("Out Of Bounds")
     end
   end
-
-  describe("delete") do
-    xit 'deletes at an index' do
-      list = LinkedList.new
-      list.append(0)
-      list.append(1)
-      list.append(2)
-      list.append(3)
-      list.delete(2)
-      expect(list.get(1)).to eq 1
-      expect(list.get(2)).to eq 3
-    end
-  end
 end
