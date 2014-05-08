@@ -23,7 +23,13 @@ describe ScoringArray do
     array = ScoringArray.new(2)
     array.set(0,0)
     array.set(1,1)
-    expect(array.equals_array?([0,1])).to be_true
-    expect(array.equals_array?([])).to be_false
+    expect(array).to eq([0,1])
+    expect(array).not_to eq([1,0])
+  end
+
+  it "slices" do
+    bigger_one = ScoringArray.from_array([0, 1, 2, 3, 4,  5])
+    littler_one = bigger_one.slice(2,3)
+    expect(littler_one.equals_array?([2,3])).to be_true
   end
 end

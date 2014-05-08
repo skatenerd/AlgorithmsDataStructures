@@ -13,9 +13,13 @@ class ScoringArray
     self.underlying_array = []
   end
 
+  def self.clear_counts
+    self.operations_count = 0
+    self.allocations_count = 0
+  end
+
   def self.from_array(initializer)
     instance = ScoringArray.new(initializer.length)
-    #instance.instance_variable_set(:@underlying_array, initializer)
     initializer.each_with_index do |element, index|
       instance.set(index, element)
     end
@@ -24,7 +28,7 @@ class ScoringArray
 
   def set(index, value)
     self.class.operations_count += 1
-    if index > length
+    if index > @length
       raise "Index out of bounds"
     end
     underlying_array[index] = value
@@ -35,11 +39,26 @@ class ScoringArray
     underlying_array[index]
   end
 
+  def length
+    self.class.operations_count += 1
+    return @length
+  end
+
+  def slice(start_index, end_index)
+    array_slice = underlying_array.slice(start_index..end_index)
+    self.class.from_array(array_slice)
+  end
+
+  def ==(other)
+    underlying_array == other
+  end
+
   def equals_array?(array)
     underlying_array == array
   end
 
   private
 
-  attr_accessor :underlying_array, :length
+  attr_accessor :underlying_array
+  attr_writer :length
 end
