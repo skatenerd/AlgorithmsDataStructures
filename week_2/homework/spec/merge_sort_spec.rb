@@ -12,7 +12,7 @@ describe MergeSort do
       left = ScoringArray.from_array([1, 5])
       right = ScoringArray.from_array([4, 10])
       merged = MergeSort.merge(left, right)
-      expect(merged.equals_array?([1, 4, 5, 10])).to be_true
+      merged.should == [1, 4, 5, 10]
     end
   end
 
@@ -30,9 +30,11 @@ describe MergeSort do
 
   describe "convergence" do
     xit "time / (n*log(n)) converges" do
-      max_length = 10000000
       current_length = 2
-      while current_length < max_length
+      nth_try = 0
+      last_ratio = nil
+      convergence_threshold = 0.01
+      while true
         n_logn = current_length * Math.log(current_length, 2)
         to_sort = random_array(current_length)
 
@@ -42,7 +44,19 @@ describe MergeSort do
         ratio = ScoringArray.operations_count / n_logn
 
         puts "Ratio was: #{ratio}"
+        if last_ratio && ((last_ratio - ratio).abs < convergence_threshold)
+          puts "YAY you converged to some mutliple of n-log-n"
+          puts "your constant was: #{ratio}"
+          break
+        end
+
+        last_ratio = ratio
         current_length += 10000
+        nth_try += 1
+
+        if nth_try > 15
+          raise "You never converged to n log n! try again!"
+        end
       end
     end
   end
