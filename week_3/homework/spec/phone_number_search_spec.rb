@@ -47,7 +47,7 @@ describe PhoneNumberSearch do
 
     xit "knows when a string is made up of many words" do
       expect(PhoneNumberSearch.subwords_of("beanbeanbeansbeanbean", @dictionary)).to eq([
-                                                                                        ["bean", "bean", "beans", "bean", "bean"]
+        ["bean", "bean", "beans", "bean", "bean"]
       ])
     end
   end
