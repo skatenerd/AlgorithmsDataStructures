@@ -53,7 +53,7 @@ describe PhoneNumberSearch do
   end
 
   describe "coup de gras" do
-    xit 'foo' do
+    xit 'finds word combinations for a phone number' do
       dictionary = Set.new(["user", "uby", "use", "ruby"])
       breakdowns = PhoneNumberSearch.find_word_breakdowns([
         8, 7, 3, 7, 8, 2, 9
