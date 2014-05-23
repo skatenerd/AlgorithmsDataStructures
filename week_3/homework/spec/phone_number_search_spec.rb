@@ -1,3 +1,7 @@
+#Go here:
+#
+# http://www.meetup.com/ChicagoRuby/events/152058172/
+
 require 'set'
 require 'phone_number_search'
 
