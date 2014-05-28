@@ -2,6 +2,11 @@ require 'hash_map'
 require 'rspec'
 
 describe HashMap do
+  it "is nil when retrieving a not found object" do
+    map = HashMap.new
+    expect(map.get("foobar")).to be_nil
+  end
+
   it "sets and gets an object" do
     map = HashMap.new
     map.set("test", "ing")
