@@ -1,10 +1,15 @@
+require_relative '../../../week_2/homework/lib/scoring_array'
 require 'scoring_linked_list'
+require 'binary_search'
 
 class DetermineComplexities
   def self.linked_list_prepends(n)
   end
 
   def self.linked_list_appends(n)
+  end
+
+  def self.binary_search(n)
   end
 end
 
@@ -33,6 +38,13 @@ describe DetermineComplexities do
     return actual_operation_count
   end
 
+  def binary_search_on_list(size)
+    elements = ScoringArray.from_array((0...size).to_a)
+    ScoringArray.clear_counts
+    BinarySearch.contains?(elements, 0)
+    return ScoringArray.operations_count
+  end
+
   it "Knows complexity of N Linked List Prepends" do
     first_run_count = 1000
     actual_operation_count = prepend_to_linked_list(first_run_count)
@@ -45,6 +57,9 @@ describe DetermineComplexities do
     predicted_operation_count = DetermineComplexities.linked_list_prepends(second_run_count)
     second_ratio = (actual_operation_count + 0.0) / predicted_operation_count
 
+    ####################################################################################################
+    # The ratios should not change.  Your guess can be wrong, but it should be wrong by the same amount!
+    ####################################################################################################
     first_ratio.should be_within(0.01).of(second_ratio)
   end
 
@@ -59,10 +74,20 @@ describe DetermineComplexities do
     predicted_operation_count = DetermineComplexities.linked_list_appends(second_run_count)
     second_ratio = (actual_operation_count + 0.0) / predicted_operation_count
 
+    first_ratio.should be_within(0.01).of(second_ratio)
+  end
 
-    ####################################################################################################
-    # The ratios should not change.  Your guess can be wrong, but it should be wrong by the same amount!
-    ####################################################################################################
+  it "knows complexity of binary search" do
+    first_run_count = 100000
+    actual_operation_count = binary_search_on_list(first_run_count)
+    predicted_operation_count = DetermineComplexities.binary_search(first_run_count)
+    first_ratio = (actual_operation_count + 0.0) / predicted_operation_count
+
+    second_run_count = 200000
+    actual_operation_count = binary_search_on_list(second_run_count)
+    predicted_operation_count = DetermineComplexities.binary_search(second_run_count)
+    second_ratio = (actual_operation_count + 0.0) / predicted_operation_count
+
     first_ratio.should be_within(0.01).of(second_ratio)
   end
 end
