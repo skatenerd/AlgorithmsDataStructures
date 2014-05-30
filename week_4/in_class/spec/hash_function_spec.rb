@@ -3,8 +3,9 @@ require 'rspec'
 
 describe HashFunction do
   it "is a pure function" do
-    result = HashFunction.hash("example")
-    expect(result).to eq(result)
+    result1 = HashFunction.hash("example")
+    result2 = HashFunction.hash("example")
+    expect(result1).to eq(result2)
   end
 
   it "returns an integer larger than 0" do
