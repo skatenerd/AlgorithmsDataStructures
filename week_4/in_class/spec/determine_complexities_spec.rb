@@ -81,12 +81,12 @@ describe DetermineComplexities do
     first_run_count = 100000
     actual_operation_count = binary_search_on_list(first_run_count)
     predicted_operation_count = DetermineComplexities.binary_search(first_run_count)
-    first_ratio = (actual_operation_count + 0.0) / predicted_operation_count
+    first_ratio = (predicted_operation_count + 0.0) / actual_operation_count
 
     second_run_count = 200000
     actual_operation_count = binary_search_on_list(second_run_count)
     predicted_operation_count = DetermineComplexities.binary_search(second_run_count)
-    second_ratio = (actual_operation_count + 0.0) / predicted_operation_count
+    second_ratio = (predicted_operation_count + 0.0) / actual_operation_count
 
     first_ratio.should be_within(0.01).of(second_ratio)
   end
